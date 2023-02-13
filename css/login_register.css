@@ -26,9 +26,27 @@
     margin-top: 50px;
     text-decoration: underline;
 }
+#toggler:hover {
+    cursor: pointer;
+}
 
 #login_register_button {
     height: 45px;
     width: 100%;
     padding: 10px 0px;
+}
+
+.contacting_server_modal {
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.contacting_server_message {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
 }
