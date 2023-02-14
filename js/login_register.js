@@ -57,6 +57,10 @@ async function logInToQuiz(){
     const loginResponse = await fetchRequest(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`)
 
     if(loginResponse.ok){
+        console.log(loginResponse);
+        console.log(await loginResponse.json());
+        const message = "Sorry the site is under construction.";
+        feedbackModalWithButton(tempModal, tempDiv, message)
     }else{
         if(loginResponse.status === 418){
             const message = "The server thinks it's not a teapot!"
