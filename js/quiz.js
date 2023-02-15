@@ -32,6 +32,8 @@ async function newQuestion(){
     const resource = await response.json();
 
     document.querySelector("img").setAttribute("src", resource.message)
+
+    
 }
 
 function getRandomNumbers(amount){
