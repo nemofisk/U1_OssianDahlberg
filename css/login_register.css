@@ -65,6 +65,7 @@
     width: 75%;
     padding: 25px;
     border-radius: 15px;
+    border: solid 1px white;
 }
 
 .modal_message > button {

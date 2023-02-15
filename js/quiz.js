@@ -18,6 +18,9 @@ function loadQuiz(username){
 
 async function newQuestion(){
 
+    document.querySelector("img").removeAttribute("src")
+    document.querySelector("#answers").innerHTML = "";
+
 
     const randomNumbers = getRandomNumbers(4);
 
@@ -77,24 +80,28 @@ function randomNumber(max){
 function feedbackModal(answer){
     const modal = document.createElement("div");
     modal.classList.add("modal");
-    document.querySelector("body").append(modal);
+    document.querySelector("#wrapper").append(modal);
 
     if(answer){
         modal.innerHTML = `
-        <div id="modal_message">
+        <div class="modal_message">
             <div>CORRECT!</div>
             <button id="modalbutton">ONE MORE</button>
         </div>
         `
-        modal.querySelector("#modal_message").style.backgroundColor = "lime";
+        modal.querySelector(".modal_message").style.backgroundColor = "lime";
     }else{
         modal.innerHTML = `
-        <div id="modal_message">
+        <div class="modal_message">
             <div>I'm afraid not...:-(</div>
             <button id="modalbutton">ONE MORE</button>
         </div>
         `
-        modal.querySelector("#modal_message").style.backgroundColor = "tomato";
+        modal.querySelector(".modal_message").style.backgroundColor = "tomato";
     }
 
+    document.querySelector("#modalbutton").addEventListener("click", () => {
+        modal.remove();
+        newQuestion();
+    })
 }
