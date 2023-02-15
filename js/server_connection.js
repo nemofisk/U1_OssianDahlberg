@@ -3,7 +3,6 @@
 async function fetchRequest(URL, requestOptions){
     console.log(requestOptions);
     if(requestOptions === undefined){
-        console.log("hej");
         const request = new Request(URL);
         const response = await fetch(request);
     
