@@ -42,11 +42,11 @@ function toggleLoginRegisterMode(){
 async function logInToQuiz(){
 
     const tempModal = document.createElement("div");
-    tempModal.classList.add("contacting_server_modal");
+    tempModal.classList.add("modal");
     document.querySelector("body").append(tempModal);
 
     const tempDiv = document.createElement("div");
-    tempDiv.classList.add("contacting_server_message");
+    tempDiv.classList.add("modal_message");
     tempModal.append(tempDiv);
     tempDiv.textContent = "Contacting server...";
 
@@ -76,11 +76,11 @@ async function logInToQuiz(){
 async function registerToQuiz(){
 
     const tempModal = document.createElement("div");
-    tempModal.classList.add("contacting_server_modal");
+    tempModal.classList.add("modal");
     document.querySelector("body").append(tempModal);
 
     const tempDiv = document.createElement("div");
-    tempDiv.classList.add("contacting_server_message");
+    tempDiv.classList.add("modal_message");
     tempModal.append(tempDiv);
     tempDiv.textContent = "Contacting server...";
 

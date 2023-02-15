@@ -41,7 +41,7 @@
     padding: 10px 0px;
 }
 
-.contacting_server_modal {
+.modal {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@
     bottom: 0;
 }
 
-.contacting_server_message {
+.modal_message {
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
@@ -67,7 +67,7 @@
     border-radius: 15px;
 }
 
-.contacting_server_message > button {
+.modal_message > button {
     width: 100%;
     height: 45px;
     padding: 10px 0px;

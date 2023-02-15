@@ -17,6 +17,8 @@ function loadQuiz(username){
 }
 
 async function newQuestion(){
+
+
     const randomNumbers = getRandomNumbers(4);
 
     let dogBreedObjects = [];
@@ -32,8 +34,20 @@ async function newQuestion(){
     const resource = await response.json();
 
     document.querySelector("img").setAttribute("src", resource.message)
-
-    
+    for(let dog of dogBreedObjects){
+        const answerButton = document.createElement("button");
+        document.querySelector("#answers").append(answerButton);
+        answerButton.textContent = dog.name;
+        if(answerButton.textContent === breedByDogIndex){
+            answerButton.addEventListener("click", () => {
+                feedbackModal(true);
+            });
+        }else{
+            answerButton.addEventListener("click", () => {
+                feedbackModal(false);
+            });
+        }
+    }
 }
 
 function getRandomNumbers(amount){
@@ -58,4 +72,29 @@ function getRandomNumbers(amount){
 
 function randomNumber(max){
     return Math.floor(Math.random() * max);
+}
+
+function feedbackModal(answer){
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+    document.querySelector("body").append(modal);
+
+    if(answer){
+        modal.innerHTML = `
+        <div id="modal_message">
+            <div>CORRECT!</div>
+            <button id="modalbutton">ONE MORE</button>
+        </div>
+        `
+        modal.querySelector("#modal_message").style.backgroundColor = "lime";
+    }else{
+        modal.innerHTML = `
+        <div id="modal_message">
+            <div>I'm afraid not...:-(</div>
+            <button id="modalbutton">ONE MORE</button>
+        </div>
+        `
+        modal.querySelector("#modal_message").style.backgroundColor = "tomato";
+    }
+
 }
