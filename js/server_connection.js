@@ -1,7 +1,6 @@
 "use strict";
 
 async function fetchRequest(URL, requestOptions){
-    console.log(requestOptions);
     if(requestOptions === undefined){
         const request = new Request(URL);
         const response = await fetch(request);

@@ -16,7 +16,7 @@ function loadQuiz(username){
     newQuestion()
 }
 
-function newQuestion(){
+async function newQuestion(){
     const randomNumbers = getRandomNumbers(4);
 
     let dogBreedObjects = [];
@@ -24,11 +24,14 @@ function newQuestion(){
         dogBreedObjects.push(ALL_BREEDS[randomNumbers[i]])
     }
 
-    const dogBreedIndex = randomNumber(dogBreedObjects.length);
-    const breedByDogIndex = dogBreedObjects[dogBreedIndex].name;
-    const urlByDogIndex = dogBreedObjects[dogBreedIndex].url;
+    const dogIndex = randomNumber(dogBreedObjects.length);
+    const breedByDogIndex = dogBreedObjects[dogIndex].name;
+    const urlByDogIndex = dogBreedObjects[dogIndex].url;
 
-    
+    const response = await fetchRequest(`https://dog.ceo/api/breed/${urlByDogIndex}/images/random`);
+    const resource = await response.json();
+
+    document.querySelector("img").setAttribute("src", resource.message)
 }
 
 function getRandomNumbers(amount){
