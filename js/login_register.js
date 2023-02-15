@@ -8,7 +8,7 @@ function toggleLoginRegisterMode(){
     const loginPageToggler = document.querySelector("#toggler");
 
     if(loginPageTitle.textContent === "LOGIN"){
-        document.querySelector("body").style.backgroundColor = "rgb(0, 197, 132)";
+        document.querySelector("#wrapper").style.backgroundColor = "rgb(0, 197, 132)";
 
         loginPageTitle.textContent = "REGISTER";
 
@@ -22,7 +22,7 @@ function toggleLoginRegisterMode(){
         loginPageToggler.textContent = "Already have an account? Go to login";
     }else{
         if(loginPageTitle.textContent === "REGISTER"){
-            document.querySelector("body").style.backgroundColor = "rgb(129, 239, 202)";
+            document.querySelector("#wrapper").style.backgroundColor = "rgb(129, 239, 202)";
 
             loginPageTitle.textContent = "LOGIN";
 
@@ -57,10 +57,8 @@ async function logInToQuiz(){
     const loginResponse = await fetchRequest(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`)
 
     if(loginResponse.ok){
-        console.log(loginResponse);
-        console.log(await loginResponse.json());
-        const message = "Sorry the site is under construction.";
-        feedbackModalWithButton(tempModal, tempDiv, message)
+        tempModal.remove();
+        loadQuiz(inputUsername.value);
     }else{
         if(loginResponse.status === 418){
             const message = "The server thinks it's not a teapot!"
@@ -120,14 +118,14 @@ async function registerToQuiz(){
 
 function feedbackModalWithButton(modal, buttonParent, message){
 
-    const tempButton = document.createElement("button");
+    const modalButton = document.createElement("button");
 
     buttonParent.innerHTML = message;
 
-    buttonParent.append(tempButton);
-    tempButton.textContent = "CLOSE";
+    buttonParent.append(modalButton);
+    modalButton.textContent = "CLOSE";
 
-    tempButton.addEventListener("click", () => {
+    modalButton.addEventListener("click", () => {
         modal.remove();
     })
 

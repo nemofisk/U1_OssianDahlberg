@@ -2,19 +2,25 @@
 body {
     margin: 0;
     height: 100vh;
-    background-color: rgb(129, 239, 202);
+    
+    background-color: rgb(0, 0, 0);
 }
 
 #wrapper {
-    box-sizing: border-box;
-    padding: 20px;
+    background-color: rgb(129, 239, 202);
+
     height: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
 }
 
-header {
+header > #top {
     display: flex;
     justify-content: space-between;
 }
@@ -23,6 +29,7 @@ header {
     background-image: url("../media/logo.png");
     background-position: center;
     background-size: cover;
+
     width: 30px;
     height: 30px;
 }

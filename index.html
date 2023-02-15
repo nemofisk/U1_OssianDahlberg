@@ -11,8 +11,15 @@
         <div id="wrapper">
 
             <header>
-                <div id="logo"></div>
-                <div id="app_name">Dog Breed Quiz</div>
+                <div id="top">
+                    <div id="logo"></div>
+                    <div id="app_name">Dog Breed Quiz</div>
+                </div>
+                
+                <div id="logged_in_header" class="hidden">
+                    <div id="user"></div>
+                    <button id="logout_button">logout</button>
+                </div>
             </header>
 
             <div id="login_register">
@@ -35,7 +42,10 @@
 
             </div>
 
-            <div id="quiz" class="hidden"></div>
+            <div id="quiz" class="hidden">
+                <div id="image"></div>
+                <div id="questions"></div>
+            </div>
 
             <footer id="API_info">The Dog Breed Quiz is made possible thanks to the free API by <a href="https://dog.ceo/dog-api/documentation/breed" target="_blank">DOG CEO Zine</a></footer>
         </div>
