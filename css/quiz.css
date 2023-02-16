@@ -20,6 +20,19 @@
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
     border-radius: 15px;
+}
+
+#answers {
+    margin-top: 5px;
+    gap: 5px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#answers > button {
+    height: 35px;
 }

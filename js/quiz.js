@@ -18,8 +18,9 @@ function loadQuiz(username){
 
 async function newQuestion(){
 
-    document.querySelector("img").removeAttribute("src")
+    document.querySelector("img").setAttribute("src", "./media/logo.png")
     document.querySelector("#answers").innerHTML = "";
+
 
 
     const randomNumbers = getRandomNumbers(4);
@@ -43,11 +44,11 @@ async function newQuestion(){
         answerButton.textContent = dog.name;
         if(answerButton.textContent === breedByDogIndex){
             answerButton.addEventListener("click", () => {
-                feedbackModal(true);
+                quizFeedbackModal(true);
             });
         }else{
             answerButton.addEventListener("click", () => {
-                feedbackModal(false);
+                quizFeedbackModal(false);
             });
         }
     }
@@ -77,7 +78,7 @@ function randomNumber(max){
     return Math.floor(Math.random() * max);
 }
 
-function feedbackModal(answer){
+function quizFeedbackModal(answer){
     const modal = document.createElement("div");
     modal.classList.add("modal");
     document.querySelector("#wrapper").append(modal);
