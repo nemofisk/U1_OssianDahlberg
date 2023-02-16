@@ -18,10 +18,15 @@ function loadQuiz(username){
 
 async function newQuestion(){
 
+    const generatingImageModal = document.createElement("div");
+    document.querySelector("#wrapper").append(generatingImageModal);
+    generatingImageModal.classList.add("modal");
+    generatingImageModal.innerHTML = `
+    <div class="modal_message">Getting a random image...</div>
+    `
+
     document.querySelector("img").setAttribute("src", "./media/logo.png")
     document.querySelector("#answers").innerHTML = "";
-
-
 
     const randomNumbers = getRandomNumbers(4);
 
@@ -35,6 +40,7 @@ async function newQuestion(){
     const urlByDogIndex = dogBreedObjects[dogIndex].url;
 
     const response = await fetchRequest(`https://dog.ceo/api/breed/${urlByDogIndex}/images/random`);
+    generatingImageModal.remove();
     const resource = await response.json();
 
     document.querySelector("img").setAttribute("src", resource.message)
