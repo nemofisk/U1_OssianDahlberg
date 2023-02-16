@@ -9,7 +9,7 @@
     justify-content: space-between;
 }
 
-#quiz {
+#quiz.not_hidden {
     margin: 20px 0px;
 
     display: flex;

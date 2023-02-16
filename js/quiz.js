@@ -2,16 +2,32 @@
 
 function loadQuiz(username){
 
-    document.querySelector("#wrapper").style.backgroundColor = "rgb(86, 170, 210)"
+    const loginRegisterDiv = document.querySelector("#login_register");
+    const quizDiv = document.querySelector("#quiz");
 
-    document.querySelector("#login_register").classList.add("hidden");
+    document.querySelector("#wrapper").classList.remove("login_mode", "register_mode");
+    document.querySelector("#wrapper").classList.add("logged_in");
 
-    document.querySelector("#quiz").classList.remove("hidden")
+    loginRegisterDiv.classList.add("hidden");
+    loginRegisterDiv.innerHTML = "";
+
+    quizDiv.innerHTML = `
+    <img>
+    <div id="answers"></div>
+    `
+    quizDiv.classList.remove("hidden")
+    quizDiv.classList.add("not_hidden")
 
     const loggedInHeaderAddition = document.querySelector("#logged_in_header");
+    loggedInHeaderAddition.innerHTML = `
+    <div id="user"></div>
+    <button id="logout_button">logout</button>
+    `
     loggedInHeaderAddition.classList.remove("hidden");
     loggedInHeaderAddition.classList.add("not_hidden")
     loggedInHeaderAddition.querySelector("#user").textContent = username;
+
+    document.querySelector("#logout_button").addEventListener("click", loadLoginPage);
 
     newQuestion()
 }
@@ -28,7 +44,7 @@ async function newQuestion(){
     document.querySelector("img").setAttribute("src", "./media/logo.png")
     document.querySelector("#answers").innerHTML = "";
 
-    const randomNumbers = getRandomNumbers(4);
+    const randomNumbers = getArrayOfRandomNumbers(4);
 
     let dogBreedObjects = [];
     for(let i = 0; i < randomNumbers.length; i++){
@@ -60,7 +76,7 @@ async function newQuestion(){
     }
 }
 
-function getRandomNumbers(amount){
+function getArrayOfRandomNumbers(amount){
     let numbers = [];
 
     for(let i = 0; i < amount; i++){

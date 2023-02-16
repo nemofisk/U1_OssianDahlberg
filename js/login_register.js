@@ -1,5 +1,46 @@
 "use strict";
 
+function loadLoginPage(){
+
+    document.querySelector("#wrapper").classList.remove("logged_in", "register_mode")
+    document.querySelector("#wrapper").classList.add("login_mode");
+    
+    const quizDiv = document.querySelector("#quiz")
+    quizDiv.innerHTML = "";
+    quizDiv.classList.add("hidden")
+    quizDiv.classList.remove("not_hidden")
+
+    const loggedInHeaderAddition = document.querySelector("#logged_in_header");
+    loggedInHeaderAddition.classList.add("hidden");
+    loggedInHeaderAddition.classList.remove("not_hidden");
+    loggedInHeaderAddition.innerHTML = "";
+
+    const loginRegisterDiv = document.querySelector("#login_register");
+    loginRegisterDiv.removeAttribute("class")
+    loginRegisterDiv.innerHTML = `
+    
+    <h1>LOGIN</h1>
+    <div id="inputs">
+        <div id="username">
+            <label for="UN">User Name:</label>
+            <input type="text" name="UN">
+        </div>
+
+        <div id="password">
+            <label for="PW">Password:</label>
+            <input type="password" name="PW">
+        </div>
+    </div>
+    <p id="message">Let the magic start!</p>
+    <button id="login_register_button">Login</button>
+    <p id="toggler">New to this? Register for free</p>
+
+    `
+
+    document.querySelector("#toggler").addEventListener("click", toggleLoginRegisterMode);
+    document.querySelector("#login_register > button").addEventListener("click", logInToQuiz);
+}
+
 function toggleLoginRegisterMode(){
 
     const loginPageTitle = document.querySelector("#login_register > h1");
@@ -8,8 +49,9 @@ function toggleLoginRegisterMode(){
     const loginPageToggler = document.querySelector("#toggler");
 
     if(loginPageTitle.textContent === "LOGIN"){
-        document.querySelector("#wrapper").style.backgroundColor = "rgb(0, 197, 132)";
-
+        document.querySelector("#wrapper").classList.remove("login_mode");
+        document.querySelector("#wrapper").classList.add("register_mode");
+        
         loginPageTitle.textContent = "REGISTER";
 
         loginPageMessage.textContent = "Ready when you are...";
@@ -22,8 +64,9 @@ function toggleLoginRegisterMode(){
         loginPageToggler.textContent = "Already have an account? Go to login";
     }else{
         if(loginPageTitle.textContent === "REGISTER"){
-            document.querySelector("#wrapper").style.backgroundColor = "rgb(129, 239, 202)";
-
+            document.querySelector("#wrapper").classList.remove("register_mode");
+            document.querySelector("#wrapper").classList.add("login_mode");
+            
             loginPageTitle.textContent = "LOGIN";
 
             loginPageMessage.textContent = "Let the magic start!";
