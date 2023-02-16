@@ -34,5 +34,6 @@ img {
 }
 
 #answers > button {
-    height: 35px;
+    font-size: 17px;
+    padding: 5px 0px;
 }

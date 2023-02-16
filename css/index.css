@@ -1,3 +1,38 @@
+@font-face {
+    font-family: "RobotoCondensed";
+    src: url(../fonts/RobotoCondensed-Light.ttf),
+         url(../fonts/RobotoCondensed_light/RobotoCondensedLight.ttf),
+         url(../fonts/RobotoCondensed_light/RobotoCondensedLight.eot),
+         url(../fonts/RobotoCondensed_light/RobotoCondensedLight.woff),
+         url(../fonts/RobotoCondensed_light/RobotoCondensedLight.woff2);
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-family: "RobotoCondensed";
+    src: url(../fonts/RobotoCondensed-Regular.ttf),
+         url(../fonts/RobotoCondensed_regular/RobotoCondensedRegular.ttf),
+         url(../fonts/RobotoCondensed_regular/RobotoCondensedRegular.eot),
+         url(../fonts/RobotoCondensed_regular/RobotoCondensedRegular.woff),
+         url(../fonts/RobotoCondensed_regular/RobotoCondensedRegular.woff2);
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: "RobotoCondensed";
+    src: url(../fonts/RobotoCondensed-Bold.ttf),
+         url(../fonts/RobotoCondensed_bold/RobotoCondensedBold.ttf),
+         url(../fonts/RobotoCondensed_bold/RobotoCondensedBold.eot),
+         url(../fonts/RobotoCondensed_bold/RobotoCondensedBold.woff),
+         url(../fonts/RobotoCondensed_bold/RobotoCondensedBold.woff2);
+    font-style: normal;
+    font-weight: 700;
+}
+
+* {
+    font-family: "RobotoCondensed";
+    font-weight: 400;
+}
 
 body {
     margin: 0;
@@ -44,7 +79,7 @@ header > #top {
 }
 
 footer {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .hidden {
@@ -82,4 +117,5 @@ footer {
     width: 100%;
     height: 45px;
     padding: 10px 0px;
+    font-size: 15px;
 }
