@@ -2,6 +2,9 @@
 
 function loadQuiz(username){
 
+    window.localStorage.setItem("status", "loggedIn");
+    window.localStorage.setItem("username", username)
+
     const loginRegisterDiv = document.querySelector("#login_register");
     const quizDiv = document.querySelector("#quiz");
 

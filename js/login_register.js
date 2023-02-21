@@ -2,6 +2,8 @@
 
 function loadLoginPage(){
 
+    window.localStorage.setItem("status", "notLoggedIn");
+
     document.querySelector("#wrapper").classList.remove("logged_in", "register_mode")
     document.querySelector("#wrapper").classList.add("login_mode");
     

@@ -1,7 +1,9 @@
 "use strict";
 
-loadLoginPage();
+if(window.localStorage.getItem("status") === "notLoggedIn"){
+    loadLoginPage();
+}else{
+    loadQuiz(window.localStorage.getItem("username"));
+}
 
-document.querySelector("#toggler").addEventListener("click", toggleLoginRegisterMode);
 
-document.querySelector("#login_register > button").addEventListener("click", logInToQuiz);
