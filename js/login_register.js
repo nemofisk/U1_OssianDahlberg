@@ -97,7 +97,7 @@ async function logInToQuiz(){
     const inputUsername = document.querySelector("#username > input");
     const inputPassword = document.querySelector("#password > input");
 
-    const loginResponse = await fetchRequest(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`)
+    const loginResponse = await fetchRequest(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`);
 
     if(loginResponse.ok){
         tempModal.remove();
@@ -105,12 +105,12 @@ async function logInToQuiz(){
     }else{
         if(loginResponse.status === 418){
             const message = "The server thinks it's not a teapot!"
-            feedbackModalWithButton(tempModal, tempDiv, message)
+            feedbackModalWithButton(tempModal, tempDiv, message);
         }else{
             tempModal.remove();
 
             document.querySelector("#message").style.backgroundColor = "white";
-            document.querySelector("#message").textContent = "Wrong user name or password."
+            document.querySelector("#message").textContent = "Wrong user name or password.";
         }
     }
 
