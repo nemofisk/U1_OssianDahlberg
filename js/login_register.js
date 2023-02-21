@@ -98,8 +98,9 @@ async function logInToQuiz(){
 
     const inputUsername = document.querySelector("#username > input");
     const inputPassword = document.querySelector("#password > input");
+    const request = new Request(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`);
 
-    const loginResponse = await fetchRequest(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`);
+    const loginResponse = await fetchRequest(request)
 
     if(loginResponse.ok){
         tempModal.remove();
@@ -144,7 +145,9 @@ async function registerToQuiz(){
         headers: {"Content-type": "application/json; charset=UTF-8"},
     }
 
-    const registerResponse = await fetchRequest("https://teaching.maumt.se/apis/access/", options);
+    const postRequest = new Request("https://teaching.maumt.se/apis/access/", options)
+
+    const registerResponse = await fetchRequest(postRequest);
 
     if(registerResponse.ok){
         const message = `Registration Complete.<br>Please proceed to login.`;
