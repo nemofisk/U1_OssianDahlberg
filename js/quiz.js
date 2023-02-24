@@ -45,29 +45,32 @@ async function newQuestion(){
     `
 
     document.querySelector("img").setAttribute("src", "./media/logo.png")
+    
     document.querySelector("#answers").innerHTML = "";
 
-    const randomNumbers = getArrayOfRandomNumbers(4);
+    const randomNumbersArray = getRandomUniqueNumbers(4, ALL_BREEDS.length);
 
-    let dogBreedObjects = [];
-    for(let i = 0; i < randomNumbers.length; i++){
-        dogBreedObjects.push(ALL_BREEDS[randomNumbers[i]])
+    let randomDogObjects = [];
+    for(let i = 0; i < randomNumbersArray.length; i++){
+        randomDogObjects.push(ALL_BREEDS[randomNumbersArray[i]])
     }
 
-    const dogIndex = randomNumber(dogBreedObjects.length);
-    const breedByDogIndex = dogBreedObjects[dogIndex].name;
-    const urlByDogIndex = dogBreedObjects[dogIndex].url;
+    const randomIndex = randomNumber(randomDogObjects.length);
+    const correctAnswerObject = randomDogObjects[randomIndex];
 
-    const response = await fetchRequest(`https://dog.ceo/api/breed/${urlByDogIndex}/images/random`);
+    const response = await fetchRequest(`https://dog.ceo/api/breed/${correctAnswerObject.url}/images/random`);
     generatingImageModal.remove();
     const resource = await response.json();
 
     document.querySelector("img").setAttribute("src", resource.message)
-    for(let dog of dogBreedObjects){
+
+    for(let dog of randomDogObjects){
+
         const answerButton = document.createElement("button");
         document.querySelector("#answers").append(answerButton);
         answerButton.textContent = dog.name;
-        if(answerButton.textContent === breedByDogIndex){
+
+        if(answerButton.textContent === correctAnswerObject.name){
             answerButton.addEventListener("click", () => {
                 quizFeedbackModal(true);
             });
@@ -76,10 +79,11 @@ async function newQuestion(){
                 quizFeedbackModal(false);
             });
         }
+
     }
 }
 
-function getArrayOfRandomNumbers(amount){
+function getRandomUniqueNumbers(amount, max){
     let numbers = [];
 
     for(let i = 0; i < amount; i++){
@@ -87,7 +91,7 @@ function getArrayOfRandomNumbers(amount){
     }
 
     function pushRandomNumber(){
-        const number = randomNumber(ALL_BREEDS.length);
+        const number = randomNumber(max);
 
         if(numbers.includes(number)){
             pushRandomNumber();

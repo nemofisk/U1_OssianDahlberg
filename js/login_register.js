@@ -173,8 +173,6 @@ function feedbackModalWithButton(modal, buttonParent, message){
     buttonParent.append(modalButton);
     modalButton.textContent = "CLOSE";
 
-    modalButton.addEventListener("click", () => {
-        modal.remove();
-    })
+    modalButton.addEventListener("click", () => modal.remove())
 
 }
