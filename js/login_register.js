@@ -44,6 +44,8 @@ function loadLoginPage(){
 }
 
 function toggleLoginRegisterMode(){
+    
+    document.querySelector("#wrapper").classList.add("not_logged_in");
 
     const loginPageTitle = document.querySelector("#login_register > h1");
     const loginPageMessage = document.querySelector("#message");
@@ -110,10 +112,17 @@ async function logInToQuiz(){
             const message = "The server thinks it's not a teapot!"
             feedbackModalWithButton(tempModal, tempDiv, message);
         }else{
-            tempModal.remove();
+            if(loginResponse.status === 404){
+                tempModal.remove();
 
-            document.querySelector("#message").style.backgroundColor = "white";
-            document.querySelector("#message").textContent = "Wrong user name or password.";
+                document.querySelector("#message").style.backgroundColor = "white";
+                document.querySelector("#message").textContent = "Wrong user name or password.";
+            }else{
+                tempModal.remove();
+
+                document.querySelector("#message").style.backgroundColor = "white";
+                document.querySelector("#message").textContent = "Sorry, something went wrong.";
+            }
         }
     }
 
@@ -157,8 +166,13 @@ async function registerToQuiz(){
             const message = "The server thinks it's not a teapot!";
             feedbackModalWithButton(tempModal, tempDiv, message);
         }else{
-            const message = "Sorry, that name is taken. Please try with another one.";
-            feedbackModalWithButton(tempModal, tempDiv, message);
+            if(registerResponse.status === 409){
+                const message = "Sorry, that name is taken. Please try with another one.";
+                feedbackModalWithButton(tempModal, tempDiv, message);
+            }else{
+                const message = "Sorry, something went wrong. Please try again."
+                feedbackModalWithButton(tempModal, tempDiv, message);
+            }
         }
     }
 

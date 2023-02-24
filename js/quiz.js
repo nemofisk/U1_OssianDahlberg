@@ -5,6 +5,8 @@ function loadQuiz(username){
     window.localStorage.setItem("status", "loggedIn");
     window.localStorage.setItem("username", username)
 
+    document.querySelector("#wrapper").classList.remove("not_logged_in");
+
     const loginRegisterDiv = document.querySelector("#login_register");
     const quizDiv = document.querySelector("#quiz");
 
@@ -87,14 +89,14 @@ function getRandomUniqueNumbers(amount, max){
     let numbers = [];
 
     for(let i = 0; i < amount; i++){
-        pushRandomNumber();
+        pushNumber();
     }
 
-    function pushRandomNumber(){
+    function pushNumber(){
         const number = randomNumber(max);
 
         if(numbers.includes(number)){
-            pushRandomNumber();
+            pushNumber();
         }else{
             numbers.push(number);
         }

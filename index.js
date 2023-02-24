@@ -3,7 +3,7 @@
 if(window.localStorage.getItem("status") === "notLoggedIn"){
     loadLoginPage();
 }else{
-    loadQuiz(window.localStorage.getItem("username"));
+    if(window.localStorage.getItem("status") === "loggedIn"){
+        loadQuiz(window.localStorage.getItem("username"));
+    }
 }
-
-
