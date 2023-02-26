@@ -4,13 +4,13 @@ function loadLoginPage(){
 
     window.localStorage.setItem("status", "notLoggedIn");
 
-    document.querySelector("#wrapper").classList.remove("logged_in", "register_mode")
+    document.querySelector("#wrapper").classList.remove("logged_in", "register_mode");
     document.querySelector("#wrapper").classList.add("login_mode");
     
-    const quizDiv = document.querySelector("#quiz")
+    const quizDiv = document.querySelector("#quiz");
     quizDiv.innerHTML = "";
-    quizDiv.classList.add("hidden")
-    quizDiv.classList.remove("not_hidden")
+    quizDiv.classList.add("hidden");
+    quizDiv.classList.remove("not_hidden");
 
     const loggedInHeaderAddition = document.querySelector("#logged_in_header");
     loggedInHeaderAddition.classList.add("hidden");
@@ -18,7 +18,7 @@ function loadLoginPage(){
     loggedInHeaderAddition.innerHTML = "";
 
     const loginRegisterDiv = document.querySelector("#login_register");
-    loginRegisterDiv.removeAttribute("class")
+    loginRegisterDiv.removeAttribute("class");
     loginRegisterDiv.innerHTML = `
     
     <h1>LOGIN</h1>
@@ -51,6 +51,9 @@ function toggleLoginRegisterMode(){
     const loginPageMessage = document.querySelector("#message");
     const loginPageButton = document.querySelector("#login_register > button");
     const loginPageToggler = document.querySelector("#toggler");
+
+    document.querySelector("#username > input").value = "";
+    document.querySelector("#password > input").value = "";
 
     if(loginPageTitle.textContent === "LOGIN"){
         document.querySelector("#wrapper").classList.remove("login_mode");
@@ -102,27 +105,20 @@ async function logInToQuiz(){
     const inputPassword = document.querySelector("#password > input");
     const request = new Request(`https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${inputUsername.value}&password=${inputPassword.value}`);
 
-    const loginResponse = await fetchRequest(request)
+    const loginResponse = await fetchRequest(request);
 
     if(loginResponse.ok){
         tempModal.remove();
         loadQuiz(inputUsername.value);
     }else{
         if(loginResponse.status === 418){
-            const message = "The server thinks it's not a teapot!"
+            const message = "The server thinks it's not a teapot!";
             feedbackModalWithButton(tempModal, tempDiv, message);
         }else{
-            if(loginResponse.status === 404){
-                tempModal.remove();
+            tempModal.remove();
 
-                document.querySelector("#message").style.backgroundColor = "white";
-                document.querySelector("#message").textContent = "Wrong user name or password.";
-            }else{
-                tempModal.remove();
-
-                document.querySelector("#message").style.backgroundColor = "white";
-                document.querySelector("#message").textContent = "Sorry, something went wrong.";
-            }
+            document.querySelector("#message").style.backgroundColor = "white";
+            document.querySelector("#message").textContent = "Wrong user name or password.";
         }
     }
 
@@ -154,7 +150,7 @@ async function registerToQuiz(){
         headers: {"Content-type": "application/json; charset=UTF-8"},
     }
 
-    const postRequest = new Request("https://teaching.maumt.se/apis/access/", options)
+    const postRequest = new Request("https://teaching.maumt.se/apis/access/", options);
 
     const registerResponse = await fetchRequest(postRequest);
 
@@ -166,13 +162,8 @@ async function registerToQuiz(){
             const message = "The server thinks it's not a teapot!";
             feedbackModalWithButton(tempModal, tempDiv, message);
         }else{
-            if(registerResponse.status === 409){
-                const message = "Sorry, that name is taken. Please try with another one.";
-                feedbackModalWithButton(tempModal, tempDiv, message);
-            }else{
-                const message = "Sorry, something went wrong. Please try again."
-                feedbackModalWithButton(tempModal, tempDiv, message);
-            }
+            const message = "Sorry, that name is taken. Please try with another one.";
+            feedbackModalWithButton(tempModal, tempDiv, message);
         }
     }
 
@@ -187,6 +178,6 @@ function feedbackModalWithButton(modal, buttonParent, message){
     buttonParent.append(modalButton);
     modalButton.textContent = "CLOSE";
 
-    modalButton.addEventListener("click", () => modal.remove())
+    modalButton.addEventListener("click", () => modal.remove());
 
 }

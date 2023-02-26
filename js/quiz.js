@@ -3,7 +3,7 @@
 function loadQuiz(username){
 
     window.localStorage.setItem("status", "loggedIn");
-    window.localStorage.setItem("username", username)
+    window.localStorage.setItem("username", username);
 
     document.querySelector("#wrapper").classList.remove("not_logged_in");
 
@@ -20,8 +20,8 @@ function loadQuiz(username){
     <img>
     <div id="answers"></div>
     `
-    quizDiv.classList.remove("hidden")
-    quizDiv.classList.add("not_hidden")
+    quizDiv.classList.remove("hidden");
+    quizDiv.classList.add("not_hidden");
 
     const loggedInHeaderAddition = document.querySelector("#logged_in_header");
     loggedInHeaderAddition.innerHTML = `
@@ -29,12 +29,12 @@ function loadQuiz(username){
     <button id="logout_button">logout</button>
     `
     loggedInHeaderAddition.classList.remove("hidden");
-    loggedInHeaderAddition.classList.add("not_hidden")
+    loggedInHeaderAddition.classList.add("not_hidden");
     loggedInHeaderAddition.querySelector("#user").textContent = username;
 
     document.querySelector("#logout_button").addEventListener("click", loadLoginPage);
 
-    newQuestion()
+    newQuestion();
 }
 
 async function newQuestion(){
@@ -46,7 +46,7 @@ async function newQuestion(){
     <div class="modal_message">Getting a random image...</div>
     `
 
-    document.querySelector("img").setAttribute("src", "./media/logo.png")
+    document.querySelector("img").setAttribute("src", "./media/logo.png");
     
     document.querySelector("#answers").innerHTML = "";
 
@@ -54,7 +54,7 @@ async function newQuestion(){
 
     let randomDogObjects = [];
     for(let i = 0; i < randomNumbersArray.length; i++){
-        randomDogObjects.push(ALL_BREEDS[randomNumbersArray[i]])
+        randomDogObjects.push(ALL_BREEDS[randomNumbersArray[i]]);
     }
 
     const randomIndex = randomNumber(randomDogObjects.length);
@@ -64,7 +64,7 @@ async function newQuestion(){
     generatingImageModal.remove();
     const resource = await response.json();
 
-    document.querySelector("img").setAttribute("src", resource.message)
+    document.querySelector("img").setAttribute("src", resource.message);
 
     for(let dog of randomDogObjects){
 
